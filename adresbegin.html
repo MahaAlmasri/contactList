@@ -1,49 +1,117 @@
 <html>
-    <head>
-<script>
-function voegIemandToe()
-{
-    var node = document.createElement("LI");    
-    var vnaam =document.getElementById("naam").value;             // Create a <li> node
+
+<head>
+    <script>
+        function voegIemandToe() {
+            var node = document.createElement("LI");
+            var vnaam = document.getElementById("naam").value;             // Create a <li> node
             var textnode = document.createTextNode(vnaam);         // Create a text node
             node.appendChild(textnode);                              // Append the text to <li>
-                    document.getElementById("myList").appendChild(node);     // Append <li> to <ul> with id="myList" 
+            document.getElementById("myList").appendChild(node);     // Append <li> to <ul> with id="myList" 
 
-}
-
-function myFilterFunction()
-{
-      
-
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("search");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("myList");
-    li = ul.getElementsByTagName('li');
-    for (i = 0; i < li.length; i++) {
-      txtValue = li[i].innerHTML ;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
         }
-    }
+
+        function myFilterFunction() {
 
 
-}
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myList");
+            li = ul.getElementsByTagName('li');
+            for (i = 0; i < li.length; i++) {
+                txtValue = li[i].innerHTML;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
 
-</script>
-    </head>
-    <body>
-     
-     <input type="text" id="search" onkeyup="myFilterFunction();" placeholder="Search...">
-     <input type="text" id="naam" placeholder="New...">
-        <button onclick="voegIemandToe();"> Add </button>
-      
-        <ul id="myList">
-            <li> Floris </li>
-            <li> Maha </li>
-            <li> Jan</li>
-        </ul>
-    </body>
+
+        }
+
+        function sortList() {
+            var list, i, switching, b, shouldSwitch;
+            list = document.getElementById("myList");
+            switching = true;
+            /* Make a loop that will continue until
+            no switching has been done: */
+            while (switching) {
+                // start by saying: no switching is done:
+                switching = false;
+                b = list.getElementsByTagName("LI");
+                var sortType = document.getElementsByName("sortType");
+                if (sortType[0].checked) {
+                    console.log(sortType[0].checked);
+
+                    // Loop through all list-items:
+                    for (i = 0; i < (b.length - 1); i++) {
+                        // start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /* check if the next item should
+                        switch place with the current item: */
+
+                        if (b[i].innerHTML.toLowerCase().trim() > b[i + 1].innerHTML.toLowerCase().trim()) {
+                            /* if next item is alphabetically
+                            lower than current item, mark as a switch
+                            and break the loop: */
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /* If a switch has been marked, make the switch
+                        and mark the switch as done: */
+                        b[i].parentNode.insertBefore(b[i + 1], b[i]);
+                        switching = true;
+                    }
+                }
+
+                else if (sortType[1].checked) {
+                    console.log(sortType[1].checked);
+                    for (i = 0; i < (b.length - 1); i++) {
+                        // start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /* check if the next item should
+                        switch place with the current item: */
+
+                        if (b[i].innerHTML.toLowerCase().trim() < b[i + 1].innerHTML.toLowerCase().trim()) {
+                            /* if next item is alphabetically
+                            lower than current item, mark as a switch
+                            and break the loop: */
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /* If a switch has been marked, make the switch
+                        and mark the switch as done: */
+                        b[i].parentNode.insertBefore(b[i + 1], b[i]);
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+    <input type="text" id="search" onkeyup="myFilterFunction();" placeholder="Search...">
+    <input type="text" id="naam" placeholder="New...">
+    <button onclick="voegIemandToe();"> Add </button>
+    <input type="radio" name="sortType" id="asc" value="asc"> Asc
+    <input type="radio" name="sortType" id="desc" value="desc"> Desc
+    <button onclick="sortList();">Sort</button>
+
+    <ul id="myList">
+        <li> Floris </li>
+        <li> Maha </li>
+        <li> Jan</li>
+    </ul>
+</body>
+
 </html>
