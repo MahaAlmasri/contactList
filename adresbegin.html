@@ -67,7 +67,7 @@
             li = ul.getElementsByTagName('li');
             for (i = 0; i < li.length; i++) {
                 txtValue = li[i].innerText;
-                console.log(txtValue);
+                
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     li[i].style.display = "";
                 } else {
@@ -97,7 +97,7 @@
                         /* check if the next item should
                         switch place with the current item: */
 
-                        if (b[i].innerHTML.toLowerCase().trim() > b[i + 1].innerHTML.toLowerCase().trim()) {
+                        if (b[i].innerText.substr(0,b[i].innerText.indexOf(' ')).toLowerCase().trim() > b[i + 1].innerText.substr(0,b[i].innerText.indexOf(' ')).toLowerCase().trim()) {
                             /* if next item is alphabetically
                             lower than current item, mark as a switch
                             and break the loop: */
@@ -119,8 +119,8 @@
                         shouldSwitch = false;
                         /* check if the next item should
                         switch place with the current item: */
-
-                        if (b[i].innerHTML.toLowerCase().trim() < b[i + 1].innerHTML.toLowerCase().trim()) {
+console.log(b[i].innerText.split('\n').toLowerCase().trim());
+                        if (b[i].innerText.toLowerCase().trim() < b[i + 1].innerText.toLowerCase().trim()) {
                             /* if next item is alphabetically
                             lower than current item, mark as a switch
                             and break the loop: */
@@ -146,15 +146,15 @@
     <div class="w3-container">
 <h1> Adress Book</h1>
      <br>
-        <input type="text"   class="w3-input w3-border w3-round w3-hover-red" id="naam" placeholder="New..." required> <br>
-        <input type="radio" class="w3-radio" name="gender" id="man" value="man" checked> Man
-        <input type="radio" class="w3-radio" name="gender" id="vrouw" value="vrouw"> Vrouw <br><br>
+        <input type="text"   class="w3-input w3-border  w3-hover-red" id="naam" placeholder="New..." required> <br>
+        <center><input type="radio" class="w3-radio" name="gender" id="man" value="man" checked> Man
+    <input type="radio" class="w3-radio" name="gender" id="vrouw" value="vrouw"> Vrouw </center><br><br>
         <input type="text"  class="w3-input w3-border w3-round w3-hover-red" id="functie" placeholder="Functie..." required>
-        <button id="add" onclick="voegIemandToe();"> Add </button><br>
+    <center> <button id="add" onclick="voegIemandToe();"> Add </button></center><br>
         <input type="text"  class="w3-input w3-border w3-round w3-hover-red" id="search" onkeyup="myFilterFunction(); " placeholder="Search...">
-        <input type="radio" class="w3-radio" name="sortType" id="asc" value="asc" checked> Asc
-        <input type="radio" class="w3-radio" name="sortType" id="desc" value="desc"> Desc
-        <button id="sort" onclick="sortList();">Sort</button>
+    <center> <input type="radio" class="w3-radio" name="sortType" id="asc" value="asc" checked> Asc
+  <input type="radio" class="w3-radio" name="sortType" id="desc" value="desc"> Desc</center>
+<center><button id="sort" onclick="sortList();">Sort</button></center>
         <br><br>
         <ul id="myList" class="w3-ul w3-card-4">
             <li class="w3-bar">  <img src="boy.jpeg" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
