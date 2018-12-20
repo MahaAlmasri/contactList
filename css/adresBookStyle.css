@@ -26,15 +26,17 @@ h1{ text-align: center;
  #add,#sort:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   }
-  body {
-    background-color: hsla(89, 43%, 51%, 0.1);
-  }
+  
   input[type=text]
   {
     border-radius: 50%;
     text-align: center;
   }
-  img{
+  #myList
+  {
+    background-color:#4CAF50;
+  }
+.adresBookImage {
 width:50%;
 height:200px;
 position: relative;
